@@ -1,6 +1,8 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 
+from .validators import PhoneValidator
+
 
 class User(AbstractUser):
     # inherited fields:
@@ -10,7 +12,7 @@ class User(AbstractUser):
         FEMALE = 'F', 'Female'
         UNSET = 'MF', 'Unset'
 
-    phone = models.CharField(max_length=15, blank=True)
+    phone = models.CharField(max_length=15, validators=[PhoneValidator], blank=True)
     address = models.TextField(blank=True)
     gender = models.CharField(max_length=2, choices=Gender.choices, default=Gender.UNSET)
     age = models.PositiveSmallIntegerField(blank=True, null=True)
