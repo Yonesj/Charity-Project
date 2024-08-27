@@ -28,3 +28,69 @@ class Charity(models.Model):
     def __str__(self):
         return self.name
 
+
+class Task(models.Model):
+    class TaskStatus(models.TextChoices):
+        PENDING = 'P', 'Pending'
+        WAITING = 'W', 'Waiting'
+        ASSIGNED = 'A', 'Assigned'
+        DONE = 'D', 'Done'
+
+    title = models.CharField(max_length=60)
+    state = models.CharField(
+        max_length=1,
+        default=TaskStatus.PENDING,
+        choices=TaskStatus.choices,
+    )
+    charity = models.ForeignKey(Charity, on_delete=models.CASCADE)
+    description = models.TextField(blank=True)
+    assigned_benefactor = models.ForeignKey(
+        Benefactor,
+        on_delete=models.SET_NULL,
+        null=True,
+    )
+    date = models.DateField(null=True, blank=True)
+    age_limit_from = models.IntegerField(null=True, blank=True)
+    age_limit_to = models.IntegerField(null=True, blank=True)
+    gender_limit = models.CharField(
+        max_length=2,
+        choices=User.Gender.choices,
+        default=User.Gender.UNSET,
+    )
+
+    def __str__(self):
+        return self.title
+
+    filtering_lookups = [
+        ('title__icontains', 'title',),
+        ('charity__name__icontains', 'charity'),
+        ('description__icontains', 'description'),
+        ('gender_limit__icontains', 'gender'),
+    ]
+
+    excluding_lookups = [
+        ('age_limit_from__gte', 'age'),  # Exclude greater ages
+        ('age_limit_to__lte', 'age'),  # Exclude lower ages
+    ]
+
+    @classmethod
+    def filter_related_tasks_to_charity_user(cls, user):
+        is_charity = user.is_charity
+        if not is_charity:
+            return []
+
+        return cls.objects.filter(charity=user.charity)
+
+    @classmethod
+    def filter_related_tasks_to_benefactor_user(cls, user):
+        is_benefactor = user.is_benefactor
+        if not is_benefactor:
+            return []
+
+        return cls.objects.filter(assigned_benefactor=user.benefactor)
+
+    @classmethod
+    def filter_related_tasks_to_user(cls, user):
+        charity_tasks = cls.filter_related_tasks_to_charity_user(user)
+        benefactor_tasks = cls.filter_related_tasks_to_benefactor_user(user)
+        return charity_tasks.union(benefactor_tasks)
