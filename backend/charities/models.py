@@ -29,6 +29,30 @@ class Charity(models.Model):
         return self.name
 
 
+class TaskManager(models.Manager):
+    def related_tasks_to_charity(self, user):
+        if not user.is_charity:
+            empty_queryset = Task.objects.none()
+            return empty_queryset
+
+        charity = user.charity
+        return self.filter(charity=charity)
+
+    def related_tasks_to_benefactor(self, user):
+        if not user.is_benefactor:
+            empty_queryset = Task.objects.none()
+            return empty_queryset
+
+        benefactor = user.benefactor
+        return self.filter(assigned_benefactor=benefactor)
+
+    def all_related_tasks_to_user(self, user):
+        benefactor_tasks = self.related_tasks_to_benefactor(user)
+        charity_tasks = self.related_tasks_to_charity(user)
+        pending_tasks = self.filter(state=Task.TaskStatus.PENDING)
+        return benefactor_tasks | charity_tasks | pending_tasks
+
+
 class Task(models.Model):
     class TaskStatus(models.TextChoices):
         PENDING = 'P', 'Pending'
@@ -57,6 +81,8 @@ class Task(models.Model):
         choices=User.Gender.choices,
         default=User.Gender.UNSET,
     )
+
+    objects = TaskManager()
 
     def __str__(self):
         return self.title
