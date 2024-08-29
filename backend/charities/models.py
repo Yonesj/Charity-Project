@@ -121,3 +121,27 @@ class Task(models.Model):
         charity_tasks = cls.filter_related_tasks_to_charity_user(user)
         benefactor_tasks = cls.filter_related_tasks_to_benefactor_user(user)
         return charity_tasks.union(benefactor_tasks)
+
+    def submit_benefactor_request(self, benefactor):
+        self.state = Task.TaskStatus.WAITING
+        self.assigned_benefactor = benefactor
+        self.save()
+
+    def response_to_benefactor_request(self, response):
+        if response == 'A':
+            self._accept_benefactor()
+        else:
+            self._reject_benefactor()
+
+    def done(self):
+        self.state = Task.TaskStatus.DONE
+        self.save()
+
+    def _accept_benefactor(self):
+        self.state = Task.TaskStatus.ASSIGNED
+        self.save()
+
+    def _reject_benefactor(self):
+        self.state = Task.TaskStatus.PENDING
+        self.assigned_benefactor = None
+        self.save()
