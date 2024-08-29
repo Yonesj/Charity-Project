@@ -90,7 +90,23 @@ class TaskRequest(APIView):
 
 
 class TaskResponse(APIView):
-    pass
+    permission_classes = (IsCharityOwner,)
+
+    def post(self, request, task_id):
+        data = request.data
+
+        if data['response'] not in ['A', 'R']:
+            return Response(data={
+                'detail': 'Required field ("A" for accepted / "R" for rejected)'
+            }, status=status.HTTP_400_BAD_REQUEST)
+
+        task = get_object_or_404(Task, id=task_id)
+
+        if task.state != Task.TaskStatus.WAITING:
+            return Response(data={'detail': 'This task is not waiting.'}, status=status.HTTP_404_NOT_FOUND)
+
+        task.response_to_benefactor_request(data['response'])
+        return Response(data={'detail': 'Response sent.'}, status=status.HTTP_200_OK)
 
 
 class DoneTask(APIView):
