@@ -2,8 +2,10 @@ from rest_framework import generics, status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from django.shortcuts import get_object_or_404
 
-from .models import Benefactor, Charity
+from .models import Benefactor, Charity, Task
+from accounts.permissions import IsBenefactor
 from .serializers import BenefactorSerializer, CharitySerializer
 
 
@@ -38,7 +40,18 @@ class Tasks(APIView):
 
 
 class TaskRequest(APIView):
-    pass
+    permission_classes = (IsBenefactor, )
+
+    def get(self, request, task_id):
+        task = get_object_or_404(Task, id=task_id)
+
+        if task.state != Task.TaskStatus.PENDING:
+            return Response(data={
+                'detail': 'This task is not pending.'
+            }, status=status.HTTP_404_NOT_FOUND)
+
+        task.submit_benefactor_request(request.user.benefactor)
+        return Response(data={'detail': 'Request sent.'}, status=status.HTTP_200_OK)
 
 
 class TaskResponse(APIView):
