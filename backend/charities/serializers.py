@@ -9,5 +9,14 @@ class BenefactorSerializer(serializers.ModelSerializer):
 
     def save(self, **kwargs):
         user = kwargs.get('user')
-        assert user is not None, "`user` is None"
+        return super().save(user=user)
+
+
+class CharitySerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Charity
+        fields = ('name', 'reg_number')
+
+    def save(self, **kwargs):
+        user = kwargs.get('user')
         return super().save(user=user)
