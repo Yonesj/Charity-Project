@@ -1,6 +1,7 @@
 from django.test import TestCase, Client
 from accounts.models import User
-from charities.models import Benefactor, Charity
+from benefactors.models import Benefactor
+from charities.models import Charity
 
 
 class TestAll(TestCase):
