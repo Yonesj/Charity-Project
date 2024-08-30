@@ -1,0 +1,468 @@
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #141e30 inset !important;
+    box-shadow: 0 0 0 30px #141e30 inset !important;
+    outline: none !important;
+    border-bottom: 1px solid #ffffff38;
+}
+
+input:-webkit-autofill {
+    caret-color: white;
+    outline: none !important;
+    border-bottom: 1px solid #ffffff38;
+    -webkit-text-fill-color: white !important;
+}
+
+input:-webkit-autofill:focus {
+    border-bottom: 1px solid #ffffff38;
+    outline: none !important;
+    -webkit-text-fill-color: white !important;
+}
+
+body {
+    height: 100vh;
+    background-color: #eee;
+}
+
+/*--------------------------login and signup-----------------------*/
+.log-body {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.log-container {
+    background-color: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    /* border-radius: 1vh; */
+}
+
+.log-pic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5%;
+    background-color: #52f5b4;
+    height: 100%;
+
+}
+
+.login-signup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #141E30;
+    height: 100%;
+    width: 95%;
+}
+
+.nav-tabs .nav-link.active {
+    background-color: inherit !important;
+    color: #fff !important;
+    font-weight: bold;
+}
+
+.nav-link {
+    text-decoration: none;
+    background-color: transparent !important;
+    outline: none;
+    border: none !important;
+    margin: 5px;
+}
+
+.nav-tabs .nav-link {
+    border: none;
+    color: #6e6e6e98 !important;
+    background-color: transparent !important;
+    margin: 5px;
+    outline: none;
+    font-weight: bold;
+}
+
+.enter-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20%
+}
+
+.user-icon {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px;
+    width: 100%;
+
+}
+
+.custom-input {
+    color: #fff;
+    width: 100%;
+    background-color: inherit;
+    border: none;
+    border-bottom: 1px solid #ffffff38;
+    padding: 5px 20px 5px 5px;
+    outline: none;
+    text-align: center;
+}
+
+.icon {
+    position: absolute;
+    width: 15px;
+}
+
+.logbtn {
+    outline: none !important;
+    border: none;
+    margin: 40px 0;
+    padding: 10px 0px;
+    width: 90%;
+    font-weight: bold;
+    background-color: #ffffffd1;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -ms-transition: 0.2s;
+    -o-transition: 0.2s;
+    transition: 0.2s;
+}
+
+.logbtn:hover, .logbtn:focus {
+    background-color: #52f5b4;
+    border-radius: 5px;
+}
+
+/*---------------------------------register modal-------------------------*/
+#signmod > .modal-content {
+    background: #A1FFCE;
+    background: -webkit-linear-gradient(to bottom, #FAFFD1, #A1FFCE);
+    background: linear-gradient(to bottom, #FAFFD1, #A1FFCE);
+    margin-top: 42%;
+}
+
+#mods > .modal-title {
+    direction: rtl;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: rgb(36, 36, 59)
+}
+
+.modal-header {
+    border: none
+}
+
+#modbod > .modal-body {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#modfo {
+    direction: rtl;
+    border: none;
+    display: contents;
+    justify-content: space-between;
+    width: 68%;
+}
+
+.alert {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#authenalert {
+    position: fixed;
+    bottom: 12%;
+}
+
+.charityreg {
+    margin-top: 10%;
+    text-align: right;
+}
+
+.charityreg input {
+    border-radius: 5vh;
+    padding: 5px 12px;
+    outline: none !important;
+    border: none;
+}
+
+
+/*-------------------------------navbar---------------------------*/
+.divNav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #343a40;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+input.form-control {
+    text-overflow: ellipsis;
+    padding-left: 20px;
+}
+
+.mynav {
+    width: 60%;
+    margin: auto;
+}
+
+.logOutbtn {
+    margin-right: auto;
+}
+
+.btn-danger {
+    padding: 7px 20px;
+}
+
+.dropdown-menu {
+    right: 15px !important;
+}
+
+.dropdown-item {
+    text-align: right;
+}
+
+/*------------------------------task page---------------------------*/
+.taskPage {
+    display: flex;
+    flex-direction: column;
+    background-color: #f1eded;
+    height: 100%;
+    min-height: 100vh;
+}
+
+.search-task {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 60%;
+    height: 100%;
+    min-width: 600px;
+    margin: 50px auto;
+}
+
+.taskContainer {
+    width: 70%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.searchBar {
+    width: 30%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    min-width: 250px;
+    margin-left: 15px;
+}
+
+.searchBar > .card {
+    -webkit-box-shadow: 0 0 10px rgba(175, 170, 170, 0.2);
+    box-shadow: 0 0 10px rgba(175, 170, 170, 0.2);
+}
+
+#searchHead {
+    display: flex;
+    justify-content: center;
+    background: #11998e;
+    background: -webkit-linear-gradient(to left, #6bd393, #11998e);
+    background: linear-gradient(to left, #6bd393, #11998e);
+    color: #fff;
+}
+
+#taskCard {
+    margin-bottom: 20px;
+    -webkit-box-shadow: 0 0 10px rgba(175, 170, 170, 0.2);
+    box-shadow: 0 0 10px rgba(175, 170, 170, 0.2);
+}
+
+.card-header > .row {
+    display: flex;
+    justify-content: space-between;
+    margin: auto;
+}
+
+.responses {
+    align-self: center;
+    display: flex;
+    justify-content: flex-end;
+    width: 90%;
+}
+
+.responses button {
+    margin: 1%;
+}
+
+.applyed {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.applybtn {
+    border: none;
+    align-self: flex-end;
+    padding: 7px;
+    font-weight: bold;
+}
+
+#taskError {
+    margin-top: 20%;
+    color: #721c24;
+    border: 1px solid #721c25c5;
+    border-radius: 5px;
+}
+
+#taskError > .modal-content {
+    background-color: #f8d7da !important;
+}
+
+#taskerrorBody {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*-------------------------------profile---------------------------*/
+.bene-container {
+    direction: rtl;
+    height: 100%;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    margin: auto;
+}
+
+.demographic-container {
+    width: 100%;
+    height: 100%;
+    background-color: #eee;
+    border-radius: 5px;
+    margin-top: 35px;
+    direction: rtl;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+}
+
+.demand-container {
+    width: 100%;
+    height: 100%;
+    min-height: 80vh;
+    display: flex;
+    flex-direction: column;
+    background-color: #eee;
+    border-radius: 5px;
+}
+
+#charityCard {
+    margin: 20px 0;
+    -webkit-box-shadow: 0 0 10px rgba(175, 170, 170, 0.2);
+    box-shadow: 0 0 10px rgba(175, 170, 170, 0.2);
+}
+
+.name-creat {
+    display: flex;
+    align-items: center;
+    direction: rtl;
+    width: 100%;
+}
+
+.col, .form-group {
+    margin: 5px;
+}
+
+.col > .btn:not(:disabled):not(.disabled) {
+    cursor: pointer;
+    margin: auto auto auto auto;
+}
+
+/*--------------------------------charity modal--------------------------*/
+
+#charitymodal > .modal-content {
+    background: #ECE9E6;
+    background: -webkit-linear-gradient(to bottom, #FFFFFF, #ECE9E6);
+    background: linear-gradient(to bottom, #FFFFFF, #ECE9E6);
+}
+
+#chmodt > .modal-title {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    color: #128b71
+}
+
+.modal-header {
+    border: none
+}
+
+#modbod > .modal-body {
+    margin-left: 45%;
+}
+
+.modal-footer {
+    direction: rtl;
+    border: none
+}
+
+#newtaskFooter {
+    display: flex;
+    flex-direction: column;
+}
+
+#newtaskClose {
+    align-self: flex-end;
+}
+
+/*----------------------task tabs on charity profile---------------------*/
+.demand-container > .nav-tabs {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 2px;
+}
+
+.demand-container > .nav-tabs .nav-link.active {
+    color: rgb(28, 45, 67) !important;
+    border: none !important;
+    transform: scale(1.02);
+}
+
+.demand-container > .nav-tabs .nav-link {
+    border: none;
+    font-size: medium;
+    color: rgb(170, 170, 170) !important;
+}
+
+.tasks-in-charity-profile {
+    border: none !important;
+}
+
+/*--------------------------spinner layout-------------------*/
+.spinnerdiv {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+}
